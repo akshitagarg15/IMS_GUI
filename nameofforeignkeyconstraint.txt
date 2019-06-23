@@ -1,0 +1,27 @@
+'iteminfo', 'CREATE TABLE `iteminfo` (
+  `ItemId` int(11) NOT NULL auto_increment,
+  `ItemName` varchar(100) default NULL,
+  `SubCategoryId` int(11) default NULL,
+  `BrandId` int(11) default NULL,
+  `AvailableQty` int(11) default NULL,
+  `Price` int(11) default NULL,
+  PRIMARY KEY  (`ItemId`),
+  UNIQUE KEY `ItemName` (`ItemName`),
+  KEY `SubCategoryId` (`SubCategoryId`),
+  KEY `BrandId` (`BrandId`),
+  CONSTRAINT `iteminfo_ibfk_1` FOREIGN KEY (`SubCategoryId`) REFERENCES `subcategoryinfo` (`SubCategoryId`),
+  CONSTRAINT `iteminfo_ibfk_2` FOREIGN KEY (`BrandId`) REFERENCES `brandinfo` (`BrandId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1'
+
+
+CREATE TABLE `subcategoryinfo` (
+  `SubCategoryId` int(11) NOT NULL auto_increment,
+  `SubCategoryName` varchar(100) default NULL,
+  `CategoryId` int(11) default NULL,
+  `BrandId` int(11) default NULL,
+  PRIMARY KEY  (`SubCategoryId`),
+  KEY `CategoryId` (`CategoryId`),
+  KEY `BrandId` (`BrandId`),
+  CONSTRAINT `subcategoryinfo_ibfk_1` FOREIGN KEY (`CategoryId`) REFERENCES `categoryinfo` (`CategoryId`),
+  CONSTRAINT `subcategoryinfo_ibfk_2` FOREIGN KEY (`BrandId`) REFERENCES `brandinfo` (`BrandId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
